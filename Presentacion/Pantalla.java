@@ -9,6 +9,7 @@ public class Pantalla
     
     public void presentarMenu()
     {
+        col.cargarVehiculos();
         String [] opciones = {"Listar vehiculos",
                               "Ingresar nuevo vehiculo",
                               "Borrar vehiculo",
@@ -47,6 +48,7 @@ public class Pantalla
                 int modelo = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese modelo de vehículo"));
                 Vehiculo v = new Vehiculo(placa, marca, referencia, modelo);
                 col.addVehiculo(v);
+                col.guardarVehiculos();
                 JOptionPane.showMessageDialog(null, "Vehiculo agregado");                    
             }
             else if (opcion.equals(opciones[2]))
@@ -59,6 +61,8 @@ public class Pantalla
                 else 
                 {
                     col.deleteVehiculo(index);
+                    col.guardarVehiculos();
+                    JOptionPane.showMessageDialog(null, "Vehiculo borrado");                    
                 }
             }
             else
