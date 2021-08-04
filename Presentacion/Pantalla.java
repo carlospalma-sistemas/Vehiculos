@@ -47,9 +47,16 @@ public class Pantalla
                 String placa = JOptionPane.showInputDialog(null, "Ingrese placa de vehículo");
                 int modelo = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese modelo de vehículo"));
                 Vehiculo v = new Vehiculo(placa, marca, referencia, modelo);
-                col.addVehiculo(v);
-                col.guardarVehiculos();
-                JOptionPane.showMessageDialog(null, "Vehiculo agregado");                    
+                boolean guardado = col.guardarVehiculo(v);
+                if (guardado == true)
+                {
+                    JOptionPane.showMessageDialog(null, "Vehiculo agregado");                        
+                }
+                else 
+                {
+                    JOptionPane.showMessageDialog(null, "Vehiculo no guardado");                        
+                }
+                
             }
             else if (opcion.equals(opciones[2]))
             {
@@ -61,7 +68,7 @@ public class Pantalla
                 else 
                 {
                     col.deleteVehiculo(index);
-                    col.guardarVehiculos();
+                    
                     JOptionPane.showMessageDialog(null, "Vehiculo borrado");                    
                 }
             }

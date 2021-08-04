@@ -36,6 +36,8 @@ public class Archivo
             {
                 todoElTexto = todoElTexto + cursor.readLine() + "\n";
             }
+            cursor.close();
+            fr.close();
         }
         catch(Exception e)
         {

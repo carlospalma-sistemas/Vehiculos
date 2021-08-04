@@ -1,6 +1,6 @@
 package Logica;
 import java.util.ArrayList;
-import Persistencia.DAOVehiculos;
+import Persistencia.DAOTVehiculos;
 import Persistencia.Archivo;
 
 public class ColeccionVehiculos
@@ -32,22 +32,25 @@ public class ColeccionVehiculos
         vehiculos.set(index, v);
     }
     
-    public void guardarVehiculos()
+    public boolean guardarVehiculo(Vehiculo v)
     {
-        DAOVehiculos dao = new DAOVehiculos();
-        String todoElTexto = dao.convertirTodosLosVehiculosACSV(this);
-        System.out.println(todoElTexto);
-        Archivo a = new Archivo();
-        a.escribir(todoElTexto);
+        DAOTVehiculos dao = new DAOTVehiculos();
+        int id = dao.guardarVehiculo(v);
+        if (id > 0) 
+        {
+            v.setId(id);
+            addVehiculo(v);
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
     }
     
     public void cargarVehiculos()
     {
-        Archivo a = new Archivo();
-        String todoElTexto = a.leer();
-        
-        DAOVehiculos dao = new DAOVehiculos();
-        vehiculos = dao.convertirTodoCSVAVehiculos(todoElTexto);
-        
+        DAOTVehiculos dao = new DAOTVehiculos();
+        vehiculos = dao.obtenerVehiculos();
     }
 }

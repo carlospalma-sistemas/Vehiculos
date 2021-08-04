@@ -2,6 +2,7 @@ package Logica;
 
 public class Vehiculo
 {
+    private int id;
     private String placa;
     private String marca;
     private String referencia;
@@ -21,6 +22,25 @@ public class Vehiculo
         this.marca = marca;
         this.referencia = referencia;
         this.modelo = modelo;
+    }
+    
+    public Vehiculo(int id, String placa, String marca, String referencia, int modelo)
+    {
+        this.id = id;
+        this.placa = placa;
+        this.marca = marca;
+        this.referencia = referencia;
+        this.modelo = modelo;
+    }
+    
+    public int getId()
+    {
+        return this.id;
+    }
+    
+    public void setId(int id)
+    {
+        this.id = id;
     }
     
     public String getPlaca(){
