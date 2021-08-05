@@ -74,28 +74,26 @@ public class DAOTVehiculos
     
     public void modificarVehiculo(Vehiculo v)
     {
+        //ARMAR SQL
         String sql = "UPDATE TVehiculos " +
                      "SET placa = '" + v.getPlaca() + "', marca = '" + v.getMarca() + "', referencia = '" + v.getReferencia() + "', modelo = " + v.getModelo() + " " +
                      "WHERE id = " + v.getId() + "";
-        //ARMAR SQL
-        //EJECUTAR EL SQL
-        //RECIBIR RESULTADO CANT FILAS AFECTADAS
-        //SI CANT>0
-           //SI SE actualizo
-        //SI NO
-           //NO SE actualizo
+        
+        //Crear conexion
+        Conexion c = new Conexion();
+        c.crearConexion();
+        c.ejecutarUpdate(sql);
+        c.cerrarConexion();
     }
     
     public void borrarVehiculo(Vehiculo v)
     {
         String sql = "DELETE FROM TVehiculos " +
                      "WHERE id = " + v.getId() + "";
-        //ARMAR SQL
-        //EJECUTAR EL SQL
-        //RECIBIR RESULTADO CANT FILAS AFECTADAS
-        //SI CANT>0
-           //SI SE BORRÓ LA INFO
-        //SI NO
-           //NO SE BORRÓ LA INFO
+        //Crear conexion
+        Conexion c = new Conexion();
+        c.crearConexion();
+        c.ejecutarUpdate(sql);
+        c.cerrarConexion();
     }
 }

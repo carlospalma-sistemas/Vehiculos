@@ -1,8 +1,8 @@
 package Persistencia;
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.Statement;
-import java.sql.ResultSet;
+import java.sql.DriverManager;  // Usa el driver que se instaló para crear la conexión
+import java.sql.Connection;     // Se crea la conexión y establece un ejecutor
+import java.sql.Statement;      // Ejecutar ordenes SQL
+import java.sql.ResultSet;      // Obtener desde la base de datos
 
 public class Conexion
 {
@@ -42,7 +42,7 @@ public class Conexion
     }
     
     
-    public ResultSet ejecutarUpdate(String sql)
+    public ResultSet ejecutarUpdate(String sql)    //SIRVE PARA INSERTAR, MODIFICAR O ELIMINAR
     {
         ResultSet rs = null;
         try

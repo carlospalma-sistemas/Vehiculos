@@ -48,9 +48,23 @@ public class ColeccionVehiculos
         }
     }
     
+    public void actualizarVehiculo(int index, Vehiculo v)
+    {
+        DAOTVehiculos dao = new DAOTVehiculos();
+        dao.modificarVehiculo(v);
+        setVehiculo(index, v);
+    }
+    
     public void cargarVehiculos()
     {
         DAOTVehiculos dao = new DAOTVehiculos();
         vehiculos = dao.obtenerVehiculos();
+    }
+    
+    public void borrarVehiculo(int index)
+    {
+        DAOTVehiculos dao = new DAOTVehiculos();
+        dao.borrarVehiculo(getVehiculo(index));
+        deleteVehiculo(index);
     }
 }

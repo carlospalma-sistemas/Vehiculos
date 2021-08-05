@@ -77,7 +77,7 @@ public class Vehiculo
 
     public String toString()
     {
-        return "Vehiculo "+this.marca+ " " + this.referencia + " Modelo "+this.modelo+" - Placas: "+this.placa;
+        return "["+ this.id + "]" + " Vehiculo "+this.marca+ " " + this.referencia + " Modelo "+this.modelo+" - Placas: "+this.placa;
     }
 }
 
