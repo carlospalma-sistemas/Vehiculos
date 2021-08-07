@@ -72,6 +72,72 @@ public class DAOTVehiculos
     }
     
     
+    public ArrayList<Vehiculo> obtenerVehiculos(int idBuscar, String marcaBuscar, String referenciaBuscar, String placaBuscar, int modeloBuscar)
+    {
+        ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+        //Armar el SQL
+        String sql = "SELECT id, placa, marca, referencia, modelo " +
+                     "FROM TVehiculos ";
+                     
+        String sqlQuery = "";   // WHERE .........
+        if (idBuscar>0)
+        {
+            sqlQuery = "WHERE id LIKE '%" + idBuscar + "%' ";
+        }
+        if (!marcaBuscar.equals(""))
+        {
+            sqlQuery += sqlQuery.equals("") ? "WHERE " : "OR ";
+            sqlQuery += "LOWER(marca) LIKE '%" + marcaBuscar.toLowerCase() + "%' ";
+        }
+        if (!referenciaBuscar.equals(""))
+        {
+            sqlQuery += sqlQuery.equals("") ? "WHERE " : "OR ";
+            sqlQuery += "LOWER(referencia) LIKE '%" + referenciaBuscar.toLowerCase() + "%' ";
+        }
+        if (!placaBuscar.equals(""))
+        {
+            sqlQuery += sqlQuery.equals("") ? "WHERE " : "OR ";
+            sqlQuery += "LOWER(placa) LIKE '%" + placaBuscar.toLowerCase() + "%' ";
+        }
+        if (modeloBuscar>0)
+        {
+            sqlQuery += sqlQuery.equals("") ? "WHERE " : "OR ";
+            sqlQuery += "modelo LIKE '%" + modeloBuscar + "%' ";
+        }
+        sql += sqlQuery;
+        System.out.println(sql);
+        //Crear la conexión
+        Conexion c = new Conexion();
+        c.crearConexion();
+        
+        try
+        {
+            //EJECUTAR EL SQL y recibir el ResultSet
+            ResultSet rs = c.ejecutarQuery(sql);
+            //RECORRER TODOS LOS REGISTROS DEL RESULTSET
+            while(rs.next())
+            {
+                int id = rs.getInt("id");
+                String placa = rs.getString("placa");
+                String marca = rs.getString("marca");
+                String referencia = rs.getString("referencia");
+                int modelo = rs.getInt("modelo");
+                //ARMAR EL OBJETO VEHICULO
+                Vehiculo v = new Vehiculo(id, placa, marca, referencia, modelo);
+                //ARMAR MI ARRAYLIST
+                listaVehiculos.add(v);
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        //Cerrar conexion
+        c.cerrarConexion();
+        return listaVehiculos;
+    }
+    
+    
     public void modificarVehiculo(Vehiculo v)
     {
         //ARMAR SQL

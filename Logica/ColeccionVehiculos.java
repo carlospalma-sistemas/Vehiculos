@@ -61,6 +61,31 @@ public class ColeccionVehiculos
         vehiculos = dao.obtenerVehiculos();
     }
     
+    public void cargarVehiculos(int idBuscar, String marcaBuscar, String referenciaBuscar, String placaBuscar, int modeloBuscar)
+    {
+        DAOTVehiculos dao = new DAOTVehiculos();
+        vehiculos = dao.obtenerVehiculos(idBuscar, marcaBuscar, referenciaBuscar, placaBuscar, modeloBuscar);
+    }
+    
+    public Object[][] armarMatrizVehiculos()
+    {
+        int cantColumnas = 5;
+        int cant = getSize();
+        Object[][] datos = new Object[cant][cantColumnas];
+        
+        for (int i =0; i<cant; i++)
+        {
+            datos[i] = getVehiculo(i).toArray();
+        }
+        return datos;
+    }
+    
+    public String[] armarColumnas()
+    {
+        String [] columnas = {"Id", "Marca", "Referencia", "Placa", "Modelo" };
+        return columnas;
+    }
+    
     public void borrarVehiculo(int index)
     {
         DAOTVehiculos dao = new DAOTVehiculos();

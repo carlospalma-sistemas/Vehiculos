@@ -74,7 +74,13 @@ public class Vehiculo
     public void setModelo(int modelo){
         this.modelo = modelo;
     }
-
+    
+    public Object[] toArray()
+    {
+        Object [] r = {id, marca, referencia, placa, modelo};
+        return r; 
+    }
+    
     public String toString()
     {
         return "["+ this.id + "]" + " Vehiculo "+this.marca+ " " + this.referencia + " Modelo "+this.modelo+" - Placas: "+this.placa;
